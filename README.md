@@ -150,6 +150,13 @@ Fully compliant with WCAG best practices:
 │   ├── validators.js
 │   ├── search.js
 │   └── app.js
+├── docs/
+│   └── wireframes/
+│     ├── Budgets ~  Wireframes.png
+│     ├── Dashboard ~ Wireframe.png
+│     ├── Reports ~ Wireframe.png
+│     ├── SideNavigation ~ Wireframe.png
+│     └── Transactions ~ Wireframe.png
 ├── assets/
 ├── seed.json
 ├── tests.html
