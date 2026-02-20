@@ -1,0 +1,53 @@
+{
+  "transactions": [
+    {
+      "id": "txn_0001",
+      "type": "credit",
+      "description": "Monthly Salary",
+      "senderRecipient": "Tech Corp",
+      "amount": 500000,
+      "category": "Income",
+      "date": "2026-01-01",
+      "createdAt": "2023-10-01T10:00:00Z",
+      "updatedAt": "2023-10-01T10:00:00Z"
+    },
+    {
+      "id": "txn_0002",
+      "type": "debit",
+      "description": "Grocery Shopping",
+      "senderRecipient": "Supermarket",
+      "amount": 25000,
+      "category": "Food",
+      "date": "2026-01-02",
+      "createdAt": "2023-10-02T10:00:00Z",
+      "updatedAt": "2023-10-02T10:00:00Z"
+    },
+    {
+      "id": "txn_0003",
+      "type": "debit",
+      "description": "Internet Bill",
+      "senderRecipient": "ISP Provider",
+      "amount": 15000,
+      "category": "Utilities",
+      "date": "2026-01-05",
+      "createdAt": "2023-10-05T10:00:00Z",
+      "updatedAt": "2023-10-05T10:00:00Z"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "bud_0001",
+      "name": "Food",
+      "limit": 100000,
+      "image": "",
+      "createdAt": "2023-10-01T10:00:00Z"
+    },
+    {
+      "id": "bud_0002",
+      "name": "Utilities",
+      "limit": 50000,
+      "image": "",
+      "createdAt": "2023-10-01T10:00:00Z"
+    }
+  ]
+}

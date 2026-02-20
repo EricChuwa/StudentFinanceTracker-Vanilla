@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Student Finance Tracker</title>
+  
+  <!-- Meta tags for social sharing -->
+  <meta property="og:title" content="Student Finance Tracker" />
+  <meta property="og:description" content="A powerful, offline-first tool for students to manage their finances." />
+  <meta property="og:type" content="website" />
+
+  <!--Stylesheet-->
+  <link rel="stylesheet" href="/styles/main.css">
+
+  <!-- FaveIcons & Fonts-->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+
+  <!-- Saving Image IDs -->
+  <svg style="display: none;">
+    <defs>
+      <g id="icon-menu"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></g>
+      <g id="icon-dashboard"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></g>
+      <g id="icon-transactions"><path d="M20 7h-3V3c0-.33-.16-.64-.43-.82a.98.98 0 0 0-.92-.11L3.28 6.82C2.51 7.11 2 7.87 2 8.69V20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2m-5-2.54V7H8.39zM4 20V9h16v2h-5c-1.1 0-2 .9-2 2v3c0 1.1.9 2 2 2h5v2zm16-4h-5v-3h5z"/></g>
+      <g id="icon-budgets"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></g>
+      <g id="icon-report"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></g>
+    </defs>
+  </svg>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div aria-live="polite" id="aria-live-region" class="visually-hidden"></div>
+
+  <!--Main Application Container-->
+  <div class="app-container">
+
+    <!-- My Awesome Sidebar Navigation-->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button id="toggle-sidebar" aria-label="Toggle Sidebar" class="icon-btn">
+          <svg class="icon"><use href="#icon-menu"></use></svg>
+        </button>
+        <div class="logo-text">Finance Tracker</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-link active" data-page="dashboard">
+          <svg class="icon"><use href="#icon-dashboard"></use></svg>
+          <span class="link-text">Dashboard</span>
+        </a>
+        <a href="#transactions" class="nav-link" data-page="transactions">
+          <svg class="icon"><use href="#icon-transactions"></use></svg>
+          <span class="link-text">Transactions</span>
+        </a>
+        <a href="#budgets" class="nav-link" data-page="budgets">
+          <svg class="icon"><use href="#icon-budgets"></use></svg>
+          <span class="link-text">Budgets</span>
+        </a>
+        <a href="#report" class="nav-link" data-page="report">
+          <svg class="icon"><use href="#icon-report"></use></svg>
+          <span class="link-text">Report</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" aria-label="Toggle Dark Mode" />
+            <div class="slider round"></div>
+          </label>
+          <span class="theme-text">Dark Mode</span>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content Area -->
+    <main id="main-content" class="main-content">
+      <!-- Dashboard Page -->
+      <section id="page-dashboard" class="page active">
+        <header class="page-header">
+          <h1>
+            <svg class="icon-lg"><use href="#icon-dashboard"></use></svg>
+            Dashboard
+          </h1>
+        </header>
+        <div class="dashboard-grid">
+          <article class="card elevate hover-elevate">
+            <h3>Income</h3>
+            <p id="dash-income" class="stat text-success" data-testid="text-income">0 RWF</p>
+          </article>
+          <article class="card elevate hover-elevate">
+            <h3>Expenses</h3>
+            <p id="dash-expenses" class="stat text-danger" data-testid="text-expenses">0 RWF</p>
+          </article>
+          <article class="card elevate hover-elevate">
+            <h3>Overall Balance</h3>
+            <p id="dash-balance" class="stat" data-testid="text-balance">0 RWF</p>
+          </article>
+          <article class="card elevate hover-elevate budget-analysis-card">
+            <h3>Budget Analysis</h3>
+            <div id="dash-budget-analysis" data-testid="list-budget-analysis">
+              <p class="text-secondary">No budgets defined</p>
+            </div>
+          </article>
+          <!-- Graph for  Expenses: -->
+          <article class="card elevate hover-elevate spending-chart-card" style="grid-column: 1 / -1;">
+            <h3>Spending Distribution</h3>
+            <canvas id="spending-chart" width="800" height="300" style="width: 100%; height: auto;"></canvas>
+          </article>
+        </div>
+      </section>
+
+      <!-- Transactions Page -->
+      <section id="page-transactions" class="page hidden">
+        <header class="page-header">
+          <h1>
+            <svg class="icon-lg"><use href="#icon-transactions"></use></svg>
+            Transactions
+          </h1>
+        </header>
+        
+        <div class="transactions-layout">
+          <article class="card form-card elevate">
+            <h2>Add Transaction</h2>
+            <form id="form-transaction" novalidate>
+              <div class="form-group">
+                <label for="txn-type">Type</label>
+                <select id="txn-type" name="type" required aria-describedby="type-error" data-testid="select-type">
+                  <option value="debit">Expense (Credit)</option>
+                  <option value="credit">Income (Debit)</Data></option>
+                </select>
+                <span class="error-msg" id="type-error" role="alert"></span>
+              </div>
+              
+              <div class="form-group" id="budget-group">
+                <label for="txn-category">Budget Category</label>
+                <select id="txn-category" name="category" required aria-describedby="category-error" data-testid="select-category">
+                </select>
+                <span class="error-msg" id="category-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="txn-desc">Description</label>
+                <input type="text" id="txn-desc" name="description" required aria-describedby="desc-error" data-testid="input-desc">
+                <span class="error-msg" id="desc-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="txn-sender">Sender/Recipient</label>
+                <input type="text" id="txn-sender" name="senderRecipient" required aria-describedby="sender-error" data-testid="input-sender">
+                <span class="error-msg" id="sender-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="txn-amount">Amount (RWF)</label>
+                <input type="number" step="0.01" id="txn-amount" name="amount" required aria-describedby="amount-error" data-testid="input-amount">
+                <span class="error-msg" id="amount-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="txn-date">Date</label>
+                <input type="date" id="txn-date" name="date" required aria-describedby="date-error" data-testid="input-date">
+                <span class="error-msg" id="date-error" role="alert"></span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" data-testid="button-add-txn">Add Transaction</button>
+            </form>
+          </article>
+
+          <article class="card list-card elevate">
+            <div class="list-header">
+              <h2>Transaction List</h2>
+              <div class="search-sort-controls">
+                <div class="search-box">
+                  <label for="search-txn" class="visually-hidden">Regex Search</label>
+                  <input type="text" id="search-txn" placeholder="Search..." aria-describedby="search-error" data-testid="input-search">
+                  <span id="search-error" class="error-msg" role="alert"></span>
+                </div>
+                <div class="sort-box">
+                  <select id="sort-txn" data-testid="select-sort">
+                    <option value="" disabled selected>Sort by...</option>
+                    <option value="date-desc">Date (Newest)</option>
+                    <option value="date-asc">Date (Oldest)</option>
+                    <option value="desc-asc">Description (A-Z)</option>
+                    <option value="amount-desc">Amount (High to Low)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="table-responsive">
+              <table id="table-transactions" class="table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Sender/Recipient</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-transactions" data-testid="list-transactions">
+                </tbody>
+              </table>
+            </div>
+            <div id="mobile-transactions" class="mobile-list hidden">
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Budgeting Page -->
+      <section id="page-budgets" class="page hidden">
+        <header class="page-header">
+          <h1>
+            <svg class="icon-lg"><use href="#icon-budgets"></use></svg>
+            Budgets
+          </h1>
+        </header>
+        <div class="budgets-grid" id="budgets-container" data-testid="list-budgets">
+        </div>
+        <article class="card elevate budget-add-card mt-4">
+          <h2>+ Add Budget</h2>
+          <form id="form-budget" class="flex-form" novalidate>
+             <div class="form-group">
+                <label for="bud-name">Name (Letters only)</label>
+                <input type="text" id="bud-name" name="name" required aria-describedby="bud-name-error" data-testid="input-bud-name">
+                <span class="error-msg" id="bud-name-error" role="alert"></span>
+             </div>
+             <div class="form-group">
+                <label for="bud-limit">Limit (RWF)</label>
+                <input type="number" id="bud-limit" name="limit" required aria-describedby="bud-limit-error" data-testid="input-bud-limit">
+                <span class="error-msg" id="bud-limit-error" role="alert"></span>
+             </div>
+             <button type="submit" class="btn btn-primary" data-testid="button-add-budget">Create</button>
+          </form>
+        </article>
+      </section>
+
+      <!-- Report & Data Import/Export Page-->
+      <section id="page-report" class="page hidden">
+        <header class="page-header">
+          <h1>
+            <svg class="icon-lg"><use href="#icon-report"></use></svg>
+            Report & Data
+          </h1>
+        </header>
+        <div class="report-grid">
+          <article class="card elevate">
+            <h2>Export Data</h2>
+            <p>Download your transactions and budgets as a JSON file.</p>
+            <button id="btn-export-json" class="btn btn-secondary mt-2" data-testid="button-export">Export JSON</button>
+            <button id="btn-export-csv" class="btn btn-secondary mt-2" data-testid="button-export-csv">Export CSV</button>
+          </article>
+          
+          <article class="card elevate">
+            <h2>Import JSON</h2>
+            <p>Upload a previously exported JSON file to restore data.</p>
+            <input type="file" id="file-import-json" accept=".json" class="file-input mt-2" data-testid="input-import-json">
+            <div id="import-json-msg" aria-live="polite" class="mt-2"></div>
+          </article>
+
+          <article class="card elevate">
+            <h2>Import CSV</h2>
+            <p>Import transactions from a CSV file.</p>
+            <input type="file" id="file-import-csv" accept=".csv" class="file-input mt-2" data-testid="input-import-csv">
+            <div id="import-csv-msg" aria-live="polite" class="mt-2"></div>
+          </article>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="/scripts/main.js"></script>
+</body>
+</html>

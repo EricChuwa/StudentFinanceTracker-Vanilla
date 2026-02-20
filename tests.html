@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Regex Tests</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f8fafc; color: #0f172a; }
+    .pass { color: #10b981; font-weight: bold; }
+    .fail { color: #ef4444; font-weight: bold; }
+    li { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Regex Tests</h1>
+  <ul id="results"></ul>
+  <script type="module">
+    import { regexRules } from '/scripts/validators.js';
+
+    function assert(name, condition) {
+      const li = document.createElement('li');
+      li.innerHTML = `${name}: <span class="${condition ? 'pass' : 'fail'}">${condition ? 'PASS' : 'FAIL'}</span>`;
+      document.getElementById('results').appendChild(li);
+    }
+
+    // Description
+    assert('Description: Valid', regexRules.description.test('Grocery Shopping'));
+    assert('Description: Leading space', !regexRules.description.test(' Grocery'));
+    
+    // Amount
+    assert('Amount: Valid', regexRules.amount.test('150.50'));
+    assert('Amount: Valid Integer', regexRules.amount.test('100'));
+    assert('Amount: Invalid negative', !regexRules.amount.test('-100'));
+
+    // Date
+    assert('Date: Valid YYYY-MM-DD', regexRules.date.test('2023-12-31'));
+    assert('Date: Invalid Format', !regexRules.date.test('31-12-2023'));
+
+    // Category
+    assert('Category: Valid', regexRules.category.test('Food-Drinks'));
+    assert('Category: Invalid Number', !regexRules.category.test('Food123'));
+
+    // Advanced Duplicate
+    assert('Duplicate: Detected', regexRules.duplicateWord.test('the the'));
+    assert('Duplicate: Not Detected', !regexRules.duplicateWord.test('the other'));
+  </script>
+</body>
+</html>
