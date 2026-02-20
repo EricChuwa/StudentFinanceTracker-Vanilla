@@ -107,7 +107,7 @@ function renderTransactions() {
 
   // Search
   const query = DOM.searchTxn.value;
-  const flags = 'i'; // Always case insensitive
+  const flags = 'i'; // For Case insensitve searches
   const re = compileRegex(query, flags);
   
   if (query && !re) {
@@ -186,7 +186,7 @@ function renderBudgets() {
       <article class="card elevate budget-tile" data-testid="card-budget-${b.id}">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
           <div class="budget-header" style="flex:1;">
-            <div class="budget-img">💼</div>
+            <div class="budget-img">🏦</div>
             <div class="budget-info">
               <div class="budget-name">${escapeHTML(b.name)}</div>
               <div class="budget-stats">${b.spent.toLocaleString()} / ${b.limit.toLocaleString()} RWF</div>

@@ -8,8 +8,8 @@
       "amount": 500000,
       "category": "Income",
       "date": "2026-01-01",
-      "createdAt": "2023-10-01T10:00:00Z",
-      "updatedAt": "2023-10-01T10:00:00Z"
+      "createdAt": "2026-10-01T10:00:00Z",
+      "updatedAt": "2026-10-01T10:00:00Z"
     },
     {
       "id": "txn_0002",
@@ -19,8 +19,8 @@
       "amount": 25000,
       "category": "Food",
       "date": "2026-01-02",
-      "createdAt": "2023-10-02T10:00:00Z",
-      "updatedAt": "2023-10-02T10:00:00Z"
+      "createdAt": "2026-10-02T10:00:00Z",
+      "updatedAt": "2026-10-02T10:00:00Z"
     },
     {
       "id": "txn_0003",
@@ -30,8 +30,8 @@
       "amount": 15000,
       "category": "Utilities",
       "date": "2026-01-05",
-      "createdAt": "2023-10-05T10:00:00Z",
-      "updatedAt": "2023-10-05T10:00:00Z"
+      "createdAt": "2026-10-05T10:00:00Z",
+      "updatedAt": "2026-10-05T10:00:00Z"
     }
   ],
   "budgets": [
@@ -40,14 +40,14 @@
       "name": "Food",
       "limit": 100000,
       "image": "",
-      "createdAt": "2023-10-01T10:00:00Z"
+      "createdAt": "2026-10-01T10:00:00Z"
     },
     {
       "id": "bud_0002",
       "name": "Utilities",
       "limit": 50000,
       "image": "",
-      "createdAt": "2023-10-01T10:00:00Z"
+      "createdAt": "2026-10-01T10:00:00Z"
     }
   ]
 }
