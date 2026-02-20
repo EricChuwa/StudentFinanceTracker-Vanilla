@@ -10,7 +10,7 @@ This application enables students to **track expenses, analyze spending patterns
 ## 🚀 Live Demo
 
 🔗 **Live App:** [https://ericchuwa.github.io/StudentFinanceTracker-Vanilla/](https://ericchuwa.github.io/StudentFinanceTracker-Vanilla/)
-🎥 **Demo Video (2–3 min):** *Coming Soon*
+🎥 **Demo Video (2–3 min): https://youtu.be/qq1mJBtDtWk **
 
 ---
 
