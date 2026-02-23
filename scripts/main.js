@@ -201,4 +201,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function navigateTo(hash) {
+  const pageId = hash.replace('#', '') || 'dashboard';
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Update both desktop and mobile nav links
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+  const targetPage = document.getElementById(`page-${pageId}`);
+  // Select matching links in both navs
+  document.querySelectorAll(`.nav-link[href="#${pageId}"]`).forEach(l => l.classList.add('active'));
+
+  if (targetPage) targetPage.classList.add('active');
+
+  document.getElementById('aria-live-region').textContent = `Navigated to ${pageId}`;
+}
+
 document.addEventListener('DOMContentLoaded', boot);
