@@ -45,7 +45,7 @@
           <svg class="icon"><use href="#icon-menu"></use></svg>
         </button>
       </div>
-      <nav class="sidebar-nav">
+      <nav class="sidebar-nav sidebar-nav--desktop">
         <a href="#dashboard" class="nav-link active" data-page="dashboard">
           <svg class="icon"><use href="#icon-dashboard"></use></svg>
           <span class="link-text">Dashboard</span>
@@ -73,6 +73,26 @@
         </div>
       </div>
     </aside>
+
+    <!-- Mobile bottom nav (same links, separate element) -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+    <a href="#dashboard" class="nav-link active" data-page="dashboard">
+      <svg class="icon"><use href="#icon-dashboard"></use></svg>
+      <span class="link-text">Dashboard</span>
+    </a>
+    <a href="#transactions" class="nav-link" data-page="transactions">
+      <svg class="icon"><use href="#icon-transactions"></use></svg>
+      <span class="link-text">Transactions</span>
+    </a>
+    <a href="#budgets" class="nav-link" data-page="budgets">
+      <svg class="icon"><use href="#icon-budgets"></use></svg>
+      <span class="link-text">Budgets</span>
+    </a>
+    <a href="#report" class="nav-link" data-page="report">
+      <svg class="icon"><use href="#icon-report"></use></svg>
+      <span class="link-text">Report</span>
+    </a>
+  </nav>
     
     <!-- Main Content Area -->
     <main id="main-content" class="main-content">

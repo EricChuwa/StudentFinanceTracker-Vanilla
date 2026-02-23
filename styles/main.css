@@ -661,51 +661,85 @@ mark {
 /* Responsive */
 @media (max-width: 768px) {
   .sidebar {
-    position: fixed;
-    transform: translateX(-100%);
+    display: none;
   }
-  .sidebar.mobile-open {
-    transform: translateX(0);
-  }
-  .main-content {
-    padding: var(--spacing-lg) var(--spacing-md);
-    margin-top: 64px;
-  }
+
   .app-container {
     flex-direction: column;
   }
+
   .app-container::before {
-    content: "Finance Tracker";
-    display: flex;
-    align-items: center;
-    padding: 0 60px;
-    height: 64px;
-    background: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-    font-weight: 700;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 90;
-    color: var(--text-primary);
+    display: none !important;
   }
-  .sidebar-header .icon-btn {
-    position: fixed;
-    top: 14px;
-    left: 14px;
-    z-index: 1000;
-    background: var(--bg-surface);
-    border-radius: var(--radius-sm);
+
+  .main-content {
+    margin-top: 0;
+    padding: var(--spacing-md);
+    padding-bottom: 80px;
   }
-  
+
   .table-responsive table {
     display: none;
   }
+
   .mobile-list {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
+  }
+
+  /* Mobile bottom nav */
+  .mobile-bottom-nav {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    z-index: 200;
+  }
+
+  .mobile-bottom-nav .nav-link {
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 4px;
+    border-left: none !important;
+    white-space: normal;
+  }
+
+  .mobile-bottom-nav .nav-link.active {
+    border-left: none !important;
+    border-top: 3px solid var(--color-primary);
+    background-color: var(--bg-hover);
+    color: var(--color-primary);
+    padding-top: 5px;
+  }
+
+  .mobile-bottom-nav .nav-link .link-text {
+    font-size: 0.65rem;
+    text-align: center;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-bottom-nav {
+    display: none;
+  }
+
+  .mobile-list {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-list {
+    display: none !important;
   }
 }
 
